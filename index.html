@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    </head>
+    <body ng-app="demo">
+        <div class="container" ng-controller="DemoController">
+            <h1>CWD</h1>
+            <h2>Seznam prostih terminov za najem avtomobila</h2>
+
+            <ul ng-repeat="slot in timeslots" ng-model="timeslots">
+                <li>
+                    <h3>{{ slot.carInfo.type }} {{ slot.carInfo.color }}</h3>
+                    <p>Date & time: {{ slot.date }} {{ slot.time }}</p>
+                    <p>Location: {{ slot.location }}</p>
+                    <form name="sampleForm" novalidate>
+                        <p>E-poštni naslov <input type="email" class="form-control" name="emailAddress" ng-model="emailAddress" ng-required="true" /></p>
+                        <p ng-show="sampleForm.emailAddress.$error.required && sampleForm.emailAddress.$dirty">To polje je obvezno!</p>
+                        <p ng-show="!sampleForm.emailAddress.$valid && sampleForm.emailAddress.$dirty">Email ni v pravi obliki!</p>
+                        <button class="btn btn-primary" ng-click="poslji(slot.id, emailAddress);" ng-disabled="sampleForm.$invalid">Pošlji email</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        <script src="js/main.js"></script>
+    </body>
+</html>
